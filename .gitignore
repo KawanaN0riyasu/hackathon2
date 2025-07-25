@@ -1,0 +1,15 @@
+# 仮想環境
+.venv/
+
+# Pythonのキャッシュ
+__pycache__/
+*.pyc
+
+# Streamlitの一時ファイル
+.streamlit/
+
+# ログや一時ファイルなど
+*.log
+
+# 環境変数ファイル（APIキーなど）
+.env
