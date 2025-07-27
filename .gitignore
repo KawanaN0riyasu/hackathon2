@@ -1,15 +1,39 @@
-# 仮想環境
+## 仮想環境
 .venv/
+env/
+venv/
 
-# Pythonのキャッシュ
+## Pythonキャッシュ・一時ファイル
 __pycache__/
-*.pyc
+*.py[cod]
+*.so
+*.egg-info/
 
-# Streamlitの一時ファイル
+## Streamlit関連
 .streamlit/
+# キャッシュ（ユーザーセッション情報など）
+.cache/
+# セッションの一時保存ファイル
+*.tmp
 
-# ログや一時ファイルなど
+## ログや結果ファイル
 *.log
+*.out
+*.bak
 
-# 環境変数ファイル（APIキーなど）
+## 環境ファイル
 .env
+.env.*
+
+## OSごとの不要ファイル
+.DS_Store
+Thumbs.db
+
+## IDE・エディタ一時ファイル（任意）
+.vscode/
+.idea/
+*.swp
+
+## Jupyter・ノートブック形式（開発に含まれる場合）
+.ipynb_checkpoints/
+*.ipynb

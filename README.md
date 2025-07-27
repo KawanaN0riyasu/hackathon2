@@ -1,31 +1,101 @@
-# ✍️ AI文章問題メーカー（Streamlit × Gemini）
+### ☕️ お悩み深堀りアプリ
 
-このアプリは、Google Gemini API を使って文章問題（記述式／選択式など）を自動生成できる教育支援ツールです。Python・Streamlit・Gemini API のシンプルな構成で、先生方でも「写経＆アレンジ」が可能です！
+## 💡 概要
+「ちょっとした違和感」や「モヤモヤ」を言葉にすることで、現場の困りごとを少しずつほぐしていく、先生のための気付き支援アプリです。 優しいUI・問いかけ・選択肢形式の深掘り設計で、先生自身が思考を整理できる体験を提供します。
 
----
 
-## 🔧 使用技術
-- Python 3.8+
-- Streamlit
-- Google Generative AI (Gemini API)
+## 🧑‍🔧 使い方
+使い方はとてもシンプル。以下のステップに沿って操作することで、ご自身の「気付き」を可視化できます。
 
----
+# ステップ1｜ちょっとした困りごとを記入 ✍️
+メニュー①で、最近感じた違和感やモヤモヤを自由に書いてみましょう
+書き方にルールはありません。「ちょっと面倒だな」「よく分からないけど気になる」でもOK
 
-## 🚀 アプリの使い方
+# ステップ2｜問いかけで深掘る 🪴
+Geminiが優しい問いかけや選択肢を提示してくれます
+「そういえば…」と思えるような、視点や感情に寄り添った質問設計になっています
 
-### ① 仮想環境の準備
+# ステップ3｜書き出した内容を振り返る 📚
+メニュー③では、過去のやり取りを一覧で表示
+書き直しやメモの追記、視点の振り返りができるので、後から気付きが深まることも
+
+# ステップ4｜“先生向けアプリ構想”を受け取る 📱
+Geminiが、あなたの困りごと・視点・発見をもとに「解決につながるアプリのアイデア」を生成します. アイディアは自由に編集でき、仲間と共有して広げることも可能です！
+
+
+## 🖥️ 使用技術
+Streamlit
+Gemini API（gemini-1.5-flash）
+Python 3.9+
+環境管理：.env, .gitignore, requirements.txt
+
+
+## 📂 ディレクトリ構成
+Hackathon2/
+├── .venv/
+├── .env
+├── .gitignore
+├── requirements.txt
+├── README.md
+├── app/
+│   ├── app.py                     # メイン起点ファイル
+│   ├── components/                # UI各メニューごとの表示部分
+│   │   ├── header.py              # タイトル・ページ設定
+│   │   ├── input_menu.py          # メニュー①：困りごと入力
+│   │   ├── talk_menu.py           # メニュー②：深掘りトークタイム
+│   │   ├── summary_menu.py        # メニュー③：まとめ表示・編集
+│   │   └── proposal_menu.py       # メニュー④：解決アプリ構想
+│   └── utils/
+│       ├── session.py             # セッション初期化
+│       ├── gemini_api.py          # Gemini質問生成ロジック
+│       └── constants.py           # 定数（ラベル、視点など）
+
+
+## 🚀 実行方法（セットアップガイド）
+1. 仮想環境の作成（任意・推奨）
 python -m venv .venv
-source .venv/bin/activate
-Windowsの場合は .venv\Scripts\activate
+source .venv/bin/activate  # Windowsの場合: .venv\Scripts\activate
+
+2. 必要なライブラリのインストール
+■ 基本ライブラリ（UI・データ処理など）
 pip install -r requirements.txt
 
-### ② Gemini APIキーの取得
-Google AI Studio(https://aistudio.google.com/app/apikey)にアクセス
-Googleアカウントでログイン
-「Get API Key」でキーを取得
-→ 発行されたキーを app.py の以下の部分に貼り付けてください：
-genai.configure(api_key="YOUR_API_KEY")
+■ AI連携ライブラリ（Gemini API等）
+pip install -r requirements-ai.txt
 
-### ③ アプリの起動
-streamlit run app.py
-→ ブラウザが立ち上がり、教科とテーマを選ぶだけで文章問題が生成されます。
+■ 開発補助ライブラリ（ログ監視・進捗表示など）
+pip install -r requirements-dev.txt
+
+3. 環境変数 .env の作成
+Gemini API を使うために、以下のような .env ファイルをルートに作成してください：
+GEMINI_API_KEY=your_api_key_here
+※ APIキーは Google AI Studio (https://makersuite.google.com/) から取得可能です
+
+4. アプリの起動
+streamlit run app/app.py
+初回起動時は、ログインURLが表示されるのでクリックしてアクセスしてください。
+
+
+## 🗂️ 機能概要
+メニュー	内容
+🍰 メニュー①	困りごとを“そっと一言”で記入。自由なつぶやきも歓迎。
+🪴 メニュー②	Geminiによる選択肢付きの深掘り質問で、視点を変えて思考整理。
+📚 メニュー③	質問と回答を一覧で表示。手書き編集や視点の振り返りも可能。
+📱 メニュー④	困りごとと発見した要素から、新たな「先生向け解決アプリ」構想を自動生成。
+
+
+## 🧑‍🏫 想定利用シーン
+教育現場での業務改善やUX探索
+ハッカソン・プロトタイピング
+教師研修やワークショップでの自己棚卸し
+チームでの共感的なアイディア創出
+
+
+## 🎨 UI方針
+カフェ風・手書き風・親しみやすさ重視
+心理的ハードルを下げるデザイン
+気付きや違和感にやさしくアクセス
+
+
+## 🧡 開発の意図
+現場で“何となく困っている”ことも、きちんと言語化すれば小さなアクションにつながる。 このアプリは、そんな「思考の余白」を大切にします。 先生が先生自身の言葉で語るための、安心できる問いかけの場をつくることが目的です。
