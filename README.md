@@ -63,7 +63,7 @@ Hackathon2/
 │       └── constants.py           # 定数（ラベル、視点など）
 
 
-## 🚀 実行方法（セットアップガイド）
+## 🚀 起動方法（セットアップガイド）
 1. 仮想環境の作成（任意・推奨）
 python -m venv .venv
 source .venv/bin/activate  # Windowsの場合: .venv\Scripts\activate
