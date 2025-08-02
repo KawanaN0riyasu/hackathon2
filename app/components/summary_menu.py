@@ -3,16 +3,16 @@ from utils.constants import VIEWPOINTS
 
 def render_summary_menu():
     if len(st.session_state.questions) == len(VIEWPOINTS):
-        st.markdown("## 📚 メニュー③：振り返りまとめ＆視点チェック")
+        st.markdown("### 📚 メニュー③：振り返りまとめ＆視点チェック")
 
         viewpoints = {
-            0: "困りごとの再定義",
-            1: "仕組み・分担",
-            2: "個人工夫",
-            3: "余裕ができたらしたいこと"
+            0: "取り組む課題",
+            1: "仕事環境(体制・仕組み・分担)",
+            2: "個人の創意工夫",
+            3: "叶えたいこと"
         }
 
-        for i in len(VIEWPOINTS):
+        for i in  range(len(VIEWPOINTS)):
             st.markdown(f"### 🏷️ 視点 {i+1}：{viewpoints[i]}")
             with st.container():
                 st.markdown(f"**📝 質問 {i+1}：** {st.session_state.questions[i]}")
